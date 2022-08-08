@@ -1,0 +1,360 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <RootNamespace>Sea_Shark</RootNamespace>
+    <Nullable>disable</Nullable>
+    <UseWPF>true</UseWPF>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\bin.png" />
+    <None Remove="Images\bubble.png" />
+    <None Remove="Images\bungee.png" />
+    <None Remove="Images\circleswing.png" />
+    <None Remove="Images\coral.png" />
+    <None Remove="Images\dodge.png" />
+    <None Remove="Images\electric.png" />
+    <None Remove="Images\empty.png" />
+    <None Remove="Images\flaming.png" />
+    <None Remove="Images\hotfish.png" />
+    <None Remove="Images\Image_variables\bubble-1cleaner-1maintenance.png" />
+    <None Remove="Images\Image_variables\bubble-1cleaner.png" />
+    <None Remove="Images\Image_variables\bubble-1human-1cleaner.png" />
+    <None Remove="Images\Image_variables\bubble-1human-1maintenance.png" />
+    <None Remove="Images\Image_variables\bubble-1human-1shark-1cleaner-1maintenance.png" />
+    <None Remove="Images\Image_variables\bubble-1human-1shark-1cleaner.png" />
+    <None Remove="Images\Image_variables\bubble-1human-1shark-1maintenance.png" />
+    <None Remove="Images\Image_variables\bubble-1human-1shark-2cleaner.png" />
+    <None Remove="Images\Image_variables\bubble-1human-1shark-2maintenance.png" />
+    <None Remove="Images\Image_variables\bubble-1human-1shark.png" />
+    <None Remove="Images\Image_variables\bubble-1human.png" />
+    <None Remove="Images\Image_variables\bubble-1maintenance-1cleaner.png" />
+    <None Remove="Images\Image_variables\bubble-1maintenance.png" />
+    <None Remove="Images\Image_variables\bubble-1shark-1cleaner.png" />
+    <None Remove="Images\Image_variables\bubble-1shark-1maintenance.png" />
+    <None Remove="Images\Image_variables\bubble-1shark.png" />
+    <None Remove="Images\Image_variables\bubble-2cleaner.png" />
+    <None Remove="Images\Image_variables\bubble-2human-1shark.png" />
+    <None Remove="Images\Image_variables\bubble-2human.png" />
+    <None Remove="Images\Image_variables\bubble-2maintenance.png" />
+    <None Remove="Images\Image_variables\bubble-2shark.png" />
+    <None Remove="Images\Image_variables\buildings\broke\bungee-broke.png" />
+    <None Remove="Images\Image_variables\buildings\broke\circleswing-broke.png" />
+    <None Remove="Images\Image_variables\buildings\broke\dodge-broke.png" />
+    <None Remove="Images\Image_variables\buildings\build\bungee-build.png" />
+    <None Remove="Images\Image_variables\buildings\build\circleswing-build.png" />
+    <None Remove="Images\Image_variables\buildings\build\dodge-build.png" />
+    <None Remove="Images\Image_variables\buildings\build\flaming-build.png" />
+    <None Remove="Images\Image_variables\buildings\build\hotfish-build.png" />
+    <None Remove="Images\Image_variables\buildings\build\smoothie-build.png" />
+    <None Remove="Images\Image_variables\buildings\fix\bungee-fix.png" />
+    <None Remove="Images\Image_variables\buildings\fix\circleswing-fix.png" />
+    <None Remove="Images\Image_variables\buildings\fix\dodge-fix.png" />
+    <None Remove="Images\Image_variables\buildings\nopower\bungee-nopower.png" />
+    <None Remove="Images\Image_variables\buildings\nopower\circleswing-nopower.png" />
+    <None Remove="Images\Image_variables\buildings\nopower\dodge-nopower.png" />
+    <None Remove="Images\Image_variables\buildings\nopower\flaming-nopower.png" />
+    <None Remove="Images\Image_variables\buildings\nopower\hotfish-nopower.png" />
+    <None Remove="Images\Image_variables\buildings\nopower\smoothie-nopower.png" />
+    <None Remove="Images\Image_variables\buildings\trash\bubble-trash.png" />
+    <None Remove="Images\Image_variables\buildings\wait\bungee-wait.png" />
+    <None Remove="Images\Image_variables\buildings\wait\circleswing-wait.png" />
+    <None Remove="Images\Image_variables\buildings\wait\dodge-wait.png" />
+    <None Remove="Images\Image_variables\buildings\wait\flaming-wait.png" />
+    <None Remove="Images\Image_variables\buildings\wait\hotfish-wait.png" />
+    <None Remove="Images\Image_variables\buildings\wait\smoothie-wait.png" />
+    <None Remove="Images\Image_variables\sidewalk-1cleaner-1maintenance.png" />
+    <None Remove="Images\Image_variables\sidewalk-1cleaner.png" />
+    <None Remove="Images\Image_variables\sidewalk-1human-1cleaner.png" />
+    <None Remove="Images\Image_variables\sidewalk-1human-1maintenance.png" />
+    <None Remove="Images\Image_variables\sidewalk-1human-1shark-1cleaner-1maintenance.png" />
+    <None Remove="Images\Image_variables\sidewalk-1human-1shark-1cleaner.png" />
+    <None Remove="Images\Image_variables\sidewalk-1human-1shark-1maintenance.png" />
+    <None Remove="Images\Image_variables\sidewalk-1human-1shark-2cleaner.png" />
+    <None Remove="Images\Image_variables\sidewalk-1human-1shark-2maintenance.png" />
+    <None Remove="Images\Image_variables\sidewalk-1human-1shark.png" />
+    <None Remove="Images\Image_variables\sidewalk-1human.png" />
+    <None Remove="Images\Image_variables\sidewalk-1maintenance-1cleaner.png" />
+    <None Remove="Images\Image_variables\sidewalk-1maintenance.png" />
+    <None Remove="Images\Image_variables\sidewalk-1shark-1cleaner.png" />
+    <None Remove="Images\Image_variables\sidewalk-1shark-1maintenance.png" />
+    <None Remove="Images\Image_variables\sidewalk-1shark.png" />
+    <None Remove="Images\Image_variables\sidewalk-2cleaner.png" />
+    <None Remove="Images\Image_variables\sidewalk-2human-1shark.png" />
+    <None Remove="Images\Image_variables\sidewalk-2human.png" />
+    <None Remove="Images\Image_variables\sidewalk-2maintenance.png" />
+    <None Remove="Images\Image_variables\sidewalk-2shark.png" />
+    <None Remove="Images\person1.png" />
+    <None Remove="Images\person2.png" />
+    <None Remove="Images\person3.png" />
+    <None Remove="Images\seaweed.png" />
+    <None Remove="Images\shark1.png" />
+    <None Remove="Images\shark2.png" />
+    <None Remove="Images\sidewalk.png" />
+    <None Remove="Images\smoothie.png" />
+    <None Remove="Images\wc.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\bin.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\bubble.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\bungee.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\circleswing.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\coral.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\dodge.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\electric.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\empty.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\flaming.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\hotfish.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\bubble-1cleaner-1maintenance.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\bubble-1cleaner.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\bubble-1human-1cleaner.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\bubble-1human-1maintenance.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\bubble-1human-1shark-1cleaner-1maintenance.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\bubble-1human-1shark-1cleaner.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\bubble-1human-1shark-1maintenance.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\bubble-1human-1shark-2cleaner.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\bubble-1human-1shark-2maintenance.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\bubble-1human-1shark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\bubble-1human.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\bubble-1maintenance.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\bubble-1shark-1cleaner.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\bubble-1shark-1maintenance.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\bubble-1shark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\bubble-2cleaner.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\bubble-2human-1shark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\bubble-2human.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\bubble-2maintenance.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\bubble-2shark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\buildings\broke\bungee-broke.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\buildings\broke\circleswing-broke.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\buildings\broke\dodge-broke.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\buildings\build\bungee-build.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\buildings\build\circleswing-build.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\buildings\build\dodge-build.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\buildings\build\flaming-build.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\buildings\build\hotfish-build.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\buildings\build\smoothie-build.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\buildings\fix\bungee-fix.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\buildings\fix\circleswing-fix.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\buildings\fix\dodge-fix.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\buildings\nopower\bungee-nopower.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\buildings\nopower\circleswing-nopower.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\buildings\nopower\dodge-nopower.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\buildings\nopower\flaming-nopower.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\buildings\nopower\hotfish-nopower.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\buildings\nopower\smoothie-nopower.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\buildings\trash\bubble-trash.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\buildings\wait\bungee-wait.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\buildings\wait\circleswing-wait.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\buildings\wait\dodge-wait.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\buildings\wait\flaming-wait.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\buildings\wait\hotfish-wait.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\buildings\wait\smoothie-wait.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\sidewalk-1cleaner-1maintenance.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\sidewalk-1cleaner.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\sidewalk-1human-1cleaner.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\sidewalk-1human-1maintenance.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\sidewalk-1human-1shark-1cleaner-1maintenance.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\sidewalk-1human-1shark-1cleaner.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\sidewalk-1human-1shark-1maintenance.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\sidewalk-1human-1shark-2cleaner.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\sidewalk-1human-1shark-2maintenance.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\sidewalk-1human-1shark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\sidewalk-1human.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\sidewalk-1maintenance.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\sidewalk-1shark-1cleaner.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\sidewalk-1shark-1maintenance.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\sidewalk-1shark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\sidewalk-2cleaner.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\sidewalk-2human-1shark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\sidewalk-2human.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\sidewalk-2maintenance.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Image_variables\sidewalk-2shark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\person1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\person2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\person3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\sidewalk.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\seaweed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\shark1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\shark2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\smoothie.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\wc.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Model\AStar\" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,595 @@
+﻿<Window x:Class="Sea_Shark.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sea_Shark"
+        mc:Ignorable="d"
+        Title="Sea Shark"
+        ResizeMode="NoResize"
+        Height="950"
+        Width="1100">
+    <Grid Name="mainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="96*" />
+            <RowDefinition Height="4*" />
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
+            <MenuItem Header="Game">
+                <MenuItem Header="New Game" Command="{Binding NewGameCommand}"/>
+                <MenuItem Header="Save Game" Command="{Binding SaveGameCommand}"/>
+                <MenuItem Header="Load Game" Command="{Binding LoadGameCommand}"/>
+                <MenuItem Header="Quit Game" Command="{Binding ExitGameCommand}"/>
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="How to play" />
+                <MenuItem Header="Keybindings" />
+            </MenuItem>
+        </Menu>
+        <Grid Grid.Row="1" Background="Red">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25*" />
+                <ColumnDefinition Width="75*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Background="Blue">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25*" />
+                    <RowDefinition Height="30*" />
+                    <RowDefinition Height="45*" />
+                </Grid.RowDefinitions>
+                <!-- Park Details: -->
+                <Grid Grid.Row="0" Background="Yellow">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="15*" />
+                        <RowDefinition Height="15*" />
+                        <RowDefinition Height="15*" />
+                        <RowDefinition Height="15*" />
+                        <RowDefinition Height="15*" />
+                        <RowDefinition Height="15*" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Background="LightGoldenrodYellow">
+                        <TextBlock Text="{Binding ParkName}"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left"
+                                   Margin="10 0 0 0"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*" />
+                            <ColumnDefinition Width="50*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                                   Text="Money:"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Margin="20 0 0 0" />
+                        <TextBlock Grid.Column="1"
+                                   Text="{Binding PlayerMoney, StringFormat='\{0\}\$'}"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 10 0" />
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*" />
+                            <ColumnDefinition Width="50*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                                   Text="Park entry fee:"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Margin="20 0 0 0" />
+                        <TextBox Grid.Column="1"
+                                 Text="{Binding ParkEntryFee, Mode=TwoWay}"
+                                 TextAlignment="Center"
+                                 MinWidth="40"
+                                 HorizontalAlignment="Right"
+                                 VerticalAlignment="Center"
+                                 Margin="0 0 20 0" />
+                        <TextBlock Grid.Column="1"
+                                   Text="$"
+                                   Width="10"
+                                   TextAlignment="Left"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 10 0" />
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*" />
+                            <ColumnDefinition Width="50*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                                   Text="Customers count:"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Margin="20 0 0 0" />
+                        <TextBlock Grid.Column="1"
+                                   Text="{Binding CustomersCount}"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 10 0" />
+                    </Grid>
+                    <Grid Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*" />
+                            <ColumnDefinition Width="50*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                                   Text="Satisfaction level:"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Margin="20 0 0 0" />
+                        <TextBlock Grid.Column="1"
+                                   Text="{Binding SatisfactionLevel, StringFormat='\{0\}\%'}"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 10 0" />
+                        <!-- Text="{Binding PlayerMoney, StringFormat='\{0\}\%'}" -->
+                    </Grid>
+                    <Grid Grid.Row="5">
+                        <Button VerticalAlignment="Center"
+                                HorizontalAlignment="Right"
+                                Content="Start campaign"
+                                Width="100"
+                                Margin="0 0 10 0"
+                                Command="{Binding StartCampaignCommand}"
+                                >
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="5" />
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </Grid>
+                    <Grid Grid.Row="6"></Grid>
+                </Grid>
+                <!-- End of Park Details -->
+                <!--Spawned People start-->
+                <Grid Grid.Row="1" Background="BurlyWood">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                  HorizontalScrollBarVisibility="Auto">
+                        <ItemsControl ItemsSource="{Binding AllEntities}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Columns="1" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="{Binding Type, StringFormat='Típus: \{0\}'}"/>
+                                        <TextBlock Text="{Binding State, StringFormat='Állapot: \{0\}'}"/>
+                                        <TextBlock Text="{Binding Position, StringFormat='Helyzet: \{0\}'}"/>
+                                        <TextBlock Text="{Binding Money, StringFormat='Pénz: \{0\}'}"/>
+                                        <TextBlock Text="{Binding Happiness, StringFormat='Boldogság: \{0\}'}"/>
+                                        <TextBlock Text="{Binding Hunger, StringFormat='Éhség: \{0\}'}"/>
+                                        <TextBlock Text="{Binding WcUrge, StringFormat='WC: \{0\}'}"/>
+                                        <TextBlock Text="{Binding HasCoupon, StringFormat='Van kupon\? \{0\}'}"/>
+                                        <TextBlock Text="{Binding HasTrash, StringFormat='Van szemét\? \{0\}'}"/>
+                                        <TextBlock Text="---"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+                <!--Spawned People end-->
+                <!-- Selected "Stuff"s Details: -->
+                <Grid Grid.Row="2" Background="Green">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50*" />
+                                    <ColumnDefinition Width="50*" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBox Grid.Column="0"
+                                     Text="{Binding Price, Mode=TwoWay}"
+                                     TextAlignment="Center"
+                                     MinWidth="40"
+                                     HorizontalAlignment="Left"
+                                     VerticalAlignment="Center"
+                                     Margin="20 0 0 0" />
+                                <TextBlock Grid.Column="0"
+                                       Text="$"
+                                       Width="10"
+                                       TextAlignment="Left"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       Margin="60 0 0 0" />
+                                <Button Grid.Column="1"
+                                        Width="100"
+                                        Command="{Binding SetPriceCommand}">
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="5" />
+                                        </Style>
+                                    </Button.Resources>
+                                    Set price
+                                </Button>
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50*" />
+                                    <ColumnDefinition Width="50*" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBox Grid.Column="0"
+                                     Text="{Binding MinPeople, Mode=TwoWay}"
+                                     TextAlignment="Center"
+                                     MinWidth="40"
+                                     HorizontalAlignment="Left"
+                                     VerticalAlignment="Center"
+                                     Margin="20 0 0 0" />
+                                <Button Grid.Column="1"
+                                        Width="100"
+                                        Command="{Binding SetMinNumOfPeopleCommand}">
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="5" />
+                                        </Style>
+                                    </Button.Resources>
+                                    Set min people
+                                </Button>
+                            </Grid>
+                            <ItemsControl ItemsSource="{Binding CurrentShownProperties}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <UniformGrid Columns="1" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Item1}" Margin="10, 0, 10, 0" />
+                                            <TextBlock Text="{Binding Item3}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </ScrollViewer>
+                    
+                    <!--<Grid.RowDefinitions>
+                        <RowDefinition Height="10*" />
+                        <RowDefinition Height="10*" />
+                        <RowDefinition Height="10*" />
+                        <RowDefinition Height="10*" />
+                        <RowDefinition Height="10*" />
+                        <RowDefinition Height="10*" />
+                        <RowDefinition Height="10*" />
+                        <RowDefinition Height="10*" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*" />
+                            <ColumnDefinition Width="50*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                                   Text="State:"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Margin="20 0 0 0" />
+                        <TextBlock Grid.Column="1"
+                                   Text="Building"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 10 0" />
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*" />
+                            <ColumnDefinition Width="50*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                                   Text="Entry fee:"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Margin="20 0 0 0" />
+                        <TextBox Grid.Column="1"
+                                 Text="25"
+                                 TextAlignment="Center"
+                                 MinWidth="40"
+                                 HorizontalAlignment="Right"
+                                 VerticalAlignment="Center"
+                                 Margin="0 0 20 0" />
+                        <TextBlock Grid.Column="1"
+                                   Text="$"
+                                   Width="10"
+                                   TextAlignment="Left"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 10 0" />
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*" />
+                            <ColumnDefinition Width="50*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                                   Text="Common cost:"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Margin="20 0 0 0" />
+                        <TextBlock Grid.Column="1"
+                                   Text="40$"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 10 0" />
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*" />
+                            <ColumnDefinition Width="50*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                                   Text="Building time:"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Margin="20 0 0 0" />
+                        <TextBlock Grid.Column="1"
+                                   Text="30 sec"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 10 0" />
+                    </Grid>
+                    <Grid Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*" />
+                            <ColumnDefinition Width="50*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                                   Text="Capacity:"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Margin="20 0 0 0" />
+                        <TextBlock Grid.Column="1"
+                                   Text="2"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 25 0" />
+                        <TextBlock Grid.Column="1"
+                                   Text="/"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 21 0" />
+                        <TextBlock Grid.Column="1"
+                                   Text="10"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 8 0" />
+                    </Grid>
+                    <Grid Grid.Row="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*" />
+                            <ColumnDefinition Width="50*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                                   Text="Serving time:"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Margin="20 0 0 0" />
+                        <TextBlock Grid.Column="1"
+                                   Text="3 sec"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 10 0" />
+                    </Grid>
+                    <Grid Grid.Row="6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="65*" />
+                            <ColumnDefinition Width="35*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                                   Text="Boost well-being level:"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Margin="20 0 0 0" />
+                        <TextBlock Grid.Column="1"
+                                   Text="+15%"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 10 0" />
+                    </Grid>
+                    <Grid Grid.Row="7">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*" />
+                            <ColumnDefinition Width="50*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                                   Text="Customers in queue:"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Margin="20 0 0 0" />
+                        <TextBlock Grid.Column="1"
+                                   Text="0"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 10 0" />
+                    </Grid>-->
+                </Grid>
+                <!-- End of "Stuff"s Details -->
+            </Grid>
+            <Grid Grid.Column="1" Background="Brown">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="85*" />
+                    <RowDefinition Height="15*" />
+                </Grid.RowDefinitions>
+                <!-- Game: -->
+                <Grid Grid.Row="0" Background="#311b92">
+                    <ItemsControl ItemsSource="{Binding GameFields}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Grid.Row="0" Grid.Column="0"
+                                            Command="{Binding StepCommand}" 
+                                            CommandParameter="{Binding Position}" 
+                                            Background="{Binding ImageBrush}">
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+                <!-- End of Game. -->
+                <!-- New Buildings: -->
+                <Grid Grid.Row="1" Background="SlateBlue">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="{Binding TabItemWidth}"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <ItemsControl Grid.Row="1" Grid.Column="0" ItemsSource="{Binding AreasInTabItem}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Rows="1" Columns="{Binding ItemsCountInTabItem}" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Button Command="{Binding ChooseItemCommand}" CommandParameter="{Binding Type}" >
+                                        <StackPanel Background="LightGray">
+                                            <Button Background="{Binding AreaImageBrush}" Command="{Binding ChooseItemCommand}" CommandParameter="{Binding Type}" Height="80" Width="80"/>
+                                            <Label Content="{Binding Type}" HorizontalAlignment="Center" Padding="0,5,0,0"/>
+                                            <Label Content="{Binding Price}" HorizontalAlignment="Center" />
+                                        </StackPanel>
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        
+                    </Grid>
+                    <!--<TextBlock Text="Jobb alsó sarok" /> -->
+                </Grid>
+                <!-- End of New Buildings -->
+            </Grid>
+        </Grid>
+        <!-- Footer -->
+        <Grid Grid.Row="2" Background="pink">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="90*" />
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="5* "/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="27*" />
+                    <ColumnDefinition Width="35*" />
+                    <ColumnDefinition Width="10*" />
+                    <ColumnDefinition Width="10*" />
+                    <ColumnDefinition Width="10*" />
+                    <ColumnDefinition Width="8*" />
+                </Grid.ColumnDefinitions>
+
+                <!--<TextBlock Grid.Column="0" />
+                <Button Grid.Column="1">Games</Button>
+                <Button Grid.Column="2">Restaurants</Button>
+                <Button Grid.Column="3">Pavements</Button>
+                <Button Grid.Column="4">Staff</Button>
+                <Button Grid.Column="5">Others</Button>
+                <TextBlock Grid.Column="6" />-->
+
+                <!--<TabControl ItemsSource="{Binding TabItems}">
+                    <TabControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </TabControl.ItemTemplate>
+                    <TabControl.ContentTemplate>
+                        <DataTemplate>
+                            <Button CommandParameter="{Binding Name}" Content="{Binding Name}"/>
+                        </DataTemplate>
+                    </TabControl.ContentTemplate>
+                </TabControl> -->
+                <TextBlock Grid.Column="0" />
+
+                <ItemsControl Grid.Column="1" ItemsSource="{Binding TabItems}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Rows="1"
+                                         Columns="5"
+                                         HorizontalAlignment="Center"
+                                         VerticalAlignment="Center" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding ClickCommand}"
+                                    CommandParameter="{Binding Name}"
+                                    Content="{Binding Name}"
+                                    Margin="1px" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <Button Grid.Column="2" Height="20px" Command="{Binding ChangeBuildingModeCommand}" Content="{Binding Build}"/>
+                <Button Grid.Column="3" Height="20px" Command="{Binding OpenParkCommand}" Content="Open park" Margin="5,0"/>
+                <Button Grid.Column="4" Height="20px" Command="{Binding StartMovingCommand}" Content="Move cleaner" Margin="5,0"/>
+                <TextBlock Grid.Column="5" />
+            </Grid>
+            <!-- Left arrow button -->
+            <Button Grid.Column="1" Command="{Binding GameSpeedDownCommand}">
+                <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+                    <Canvas Name="Layer_1" Canvas.Left="0" Canvas.Top="0" Width="120.64" Height="122.88">
+                        <Canvas.RenderTransform>
+                            <TranslateTransform X="0" Y="0"/>
+                        </Canvas.RenderTransform>
+                        <Canvas.Resources/>
+                        <!--Unknown tag: sodipodi:namedview-->
+                        <Canvas Name="g20">
+                            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path18" Fill="#000000">
+                                <Path.Data>
+                                    <PathGeometry Figures="M66.6 108.91c1.55 1.63 2.31 3.74 2.28 5.85c-0.03 2.11-0.84 4.2-2.44 5.79l-0.12 0.12c-1.58 1.5-3.6 2.23-5.61 2.2 c-2.01-0.03-4.02-0.82-5.55-2.37C37.5 102.85 20.03 84.9 2.48 67.11c-0.07-0.05-0.13-0.1-0.19-0.16C0.73 65.32-0.03 63.19 0 61.08 c0.03-2.11 0.85-4.21 2.45-5.8l0.27-0.26C20.21 37.47 37.65 19.87 55.17 2.36C56.71 0.82 58.7 0.03 60.71 0 c2.01-0.03 4.03 0.7 5.61 2.21l0.15 0.15c1.57 1.58 2.38 3.66 2.41 5.76c0.03 2.1-0.73 4.22-2.28 5.85L19.38 61.23L66.6 108.91 L66.6 108.91z M118.37 106.91c1.54 1.62 2.29 3.73 2.26 5.83c-0.03 2.11-0.84 4.2-2.44 5.79l-0.12 0.12 c-1.57 1.5-3.6 2.23-5.61 2.21c-2.01-0.03-4.02-0.82-5.55-2.37C89.63 101.2 71.76 84.2 54.24 67.12c-0.07-0.05-0.14-0.11-0.21-0.17 c-1.55-1.63-2.31-3.76-2.28-5.87c0.03-2.11 0.85-4.21 2.45-5.8C71.7 38.33 89.27 21.44 106.8 4.51l0.12-0.13 c1.53-1.54 3.53-2.32 5.54-2.35c2.01-0.03 4.03 0.7 5.61 2.21l0.15 0.15c1.57 1.58 2.38 3.66 2.41 5.76 c0.03 2.1-0.73 4.22-2.28 5.85L71.17 61.23L118.37 106.91L118.37 106.91z" FillRule="NonZero"/>
+                                </Path.Data>
+                            </Path>
+                        </Canvas>
+                    </Canvas>
+                </Viewbox>
+            </Button>
+            <!-- Enf of left arrow button -->
+            <!-- Right arrow button -->
+            <Button Grid.Column="2" Command="{Binding GameSpeedUpCommand}">
+                <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+                    <Canvas Name="Layer_1_" Canvas.Left="0" Canvas.Top="0" Width="120.64" Height="122.88">
+                        <Canvas.RenderTransform>
+                            <TranslateTransform X="0" Y="0"/>
+                        </Canvas.RenderTransform>
+                        <Canvas.Resources/>
+                        <!--Unknown tag: sodipodi:namedview-->
+                        <Canvas Name="g4_">
+                            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path2_" Fill="#000000">
+                                <Path.Data>
+                                    <PathGeometry Figures="M54.03 108.91c-1.55 1.63-2.31 3.74-2.28 5.85c0.03 2.11 0.84 4.2 2.44 5.79l0.12 0.12c1.58 1.5 3.6 2.23 5.61 2.2 c2.01-0.03 4.01-0.82 5.55-2.37c17.66-17.66 35.13-35.61 52.68-53.4c0.07-0.05 0.13-0.1 0.19-0.16c1.55-1.63 2.31-3.76 2.28-5.87 c-0.03-2.11-0.85-4.21-2.45-5.8l-0.27-0.26C100.43 37.47 82.98 19.87 65.46 2.36C63.93 0.82 61.93 0.03 59.92 0 c-2.01-0.03-4.03 0.7-5.61 2.21l-0.15 0.15c-1.57 1.58-2.38 3.66-2.41 5.76c-0.03 2.1 0.73 4.22 2.28 5.85l47.22 47.27 L54.03 108.91L54.03 108.91z M2.26 106.91c-1.54 1.62-2.29 3.73-2.26 5.83c0.03 2.11 0.84 4.2 2.44 5.79l0.12 0.12 c1.57 1.5 3.6 2.23 5.61 2.21c2.01-0.03 4.02-0.82 5.55-2.37C31.01 101.2 48.87 84.2 66.39 67.12c0.07-0.05 0.14-0.11 0.21-0.17 c1.55-1.63 2.31-3.76 2.28-5.87c-0.03-2.11-0.85-4.21-2.45-5.8C48.94 38.33 31.36 21.44 13.83 4.51l-0.12-0.13 c-1.53-1.54-3.53-2.32-5.54-2.35C6.16 2 4.14 2.73 2.56 4.23L2.41 4.38C0.84 5.96 0.03 8.05 0 10.14c-0.03 2.1 0.73 4.22 2.28 5.85 l47.18 45.24L2.26 106.91L2.26 106.91z" FillRule="NonZero"/>
+                                </Path.Data>
+                            </Path>
+                        </Canvas>
+                    </Canvas>
+                </Viewbox>
+            </Button>
+            <!-- End of right arrow button -->
+        </Grid>
+        <!-- Enf of footer -->
+    </Grid>
+</Window>

@@ -1,0 +1,38 @@
+﻿<Window x:Class="Sea_Shark.View.NewGameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sea_Shark.View"
+        mc:Ignorable="d"
+        Title="NewGameWindow" Height="350" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Content="Sea Shark" FontSize="40" HorizontalAlignment="Center"/>
+
+        <Button Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Content="Új játék" Width="100" Margin="0,20" Command="{Binding NewGameCommand}"/>
+
+        <Label Grid.Row="2" Grid.Column="1" Content="Park name: " Margin="0,5"/>
+        <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding ParkName}" Margin="0,5"/>
+
+        <Label Grid.Row="3" Grid.Column="1" Content="Park size: " Margin="0,5"/>
+        <ComboBox Grid.Row="3" Grid.Column="2" ItemsSource="{Binding TableSizes}" SelectedItem="{Binding CurrentTableSize, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Width="50" Margin="20,5,0,5"/>
+        <Label Grid.Row="3" Grid.Column="2" Content="x" HorizontalAlignment="Center"/>
+        <ComboBox Grid.Row="3" Grid.Column="2" ItemsSource="{Binding TableSizes}" SelectedItem="{Binding CurrentTableSize, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Width="50" Margin="0,5,20,5"/>
+
+        <Button Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Content="Mentett játék betöltése" Width="130" Margin="0,20" Command="{Binding LoadGamesCommand}"/>
+    </Grid>
+</Window>
